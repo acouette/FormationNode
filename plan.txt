@@ -4,8 +4,7 @@ NodeJs : Partie 1
     a. Histoire
     b. Architecture
     c. Event loop
-2. Npm
-    3. Modules
+3. Npm & Modules
     a. exports
     b. require
     c. Resolution, cache
