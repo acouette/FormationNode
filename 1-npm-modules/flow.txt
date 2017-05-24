@@ -1,0 +1,6 @@
+1 - show basic module with export.a, exports.b
+2 - global export like function with module.exports
+3 - core module or installed lib 'module1' - './ or ../ etc..' will load file (js or json) or directory
+4 - caching and cycles
+5 - install dependencies (dev/ save-dev)
+6 - versions
