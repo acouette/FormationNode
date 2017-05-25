@@ -13,10 +13,11 @@ NodeJs : Partie 1
     b. Promises
     c. async/await
 5. Les modules de base
-    a. console
     b. process
     c. fs
     d. http
+    e. streams
+    f. event
 6. Les tests
     a. Unitaire et Intégration
         i. Jasmine

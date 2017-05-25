@@ -19,5 +19,8 @@
   "homepage": "https://github.com/acouette/FormationNode#readme",
   "dependencies": {
     "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "through2": "^2.0.3"
   }
 }
