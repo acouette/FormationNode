@@ -1,0 +1,8 @@
+faire le quickstart mongoose
+pointer le faite que ce soit des callback et que le find ne soit pas fait dans la callback => error prone
+faire l'exercice 1 => rewrite en async
+montrer comment faire un schema avec validateurs et nested document
+montrer des queries
+opt: montrer les middlewares
+montrer les populations
+faire le l'exercice 1

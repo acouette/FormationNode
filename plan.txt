@@ -19,13 +19,7 @@ NodeJs : Partie 1
     e. streams
     f. event
 6. Les tests
-    a. Unitaire et Intégration
         i. Jasmine
-    b. HTML
-        i. Selenium webdriver
-7. Packager pour le web
-    a. Gulp
-    b. webpack
 
 
 
@@ -47,6 +41,9 @@ c. Sécurité avec JWT
 a. Monitoring
 b. Process manager
 c. Cluster
+4. Packager pour le web
+    a. Gulp
+    b. webpack
 
 
 
