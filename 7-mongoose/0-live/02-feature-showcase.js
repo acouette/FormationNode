@@ -3,11 +3,24 @@ mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost:27017/test2');
 const db = mongoose.connection;
 
+const waitForIndex = (model)=> {
+    return new Promise((resolve, reject)=> {
+        model.on('index', function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        })
+    })
+};
+
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', async function () {
 
     const countrySchema = mongoose.Schema({
-        name: {type: String, required: true}
+        name: {type: String, required: true, unique: true}
     });
 
     var kidSchema = mongoose.Schema({
@@ -27,6 +40,7 @@ db.once('open', async function () {
     var Country = mongoose.model('Country', countrySchema);
     var Kid = mongoose.model('Kid', kidSchema);
 
+    await waitForIndex(Country);
     const france = new Country({name: 'France'});
     const usa = new Country({name: 'USA'});
 
@@ -107,6 +121,8 @@ db.once('open', async function () {
     const updatedMarie4 = await Kid.findByIdAndUpdate(marie._id, {$set: {personToContact: 'Maman'}}, {new: true});
     console.log(updatedMarie4);
 
+    const allKidsWithOnlyName =  await Kid.find({}, {name: 1});
+    console.log(allKidsWithOnlyName);
 
     await Kid.remove({});
     const all = await Kid.find({});
