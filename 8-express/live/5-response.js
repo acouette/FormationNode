@@ -26,6 +26,9 @@ app.get('/send-file', (req, res) => {
   res.sendFile(__filename);
 });
 
+app.get('/status', (req, res) => {
+  res.sendStatus(404);
+});
 
 
 app.listen(3000, (err) => {
