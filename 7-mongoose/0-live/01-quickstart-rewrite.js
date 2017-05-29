@@ -5,33 +5,30 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', async function () {
-    var kittySchema = mongoose.Schema({
-        name: {type: String, minlength: 3, required: true},
-        age: {type: Number, min: 0}
-    });
+  var kittySchema = mongoose.Schema({
+    name: { type: String, minlength: 3, required: true },
+    age: { type: Number, min: 0 }
+  });
 
-    kittySchema.methods.speak = function () {
-        var greeting = this.name
-            ? "Meow name is " + this.name
-            : "I don't have a name";
-        console.log(greeting);
-    };
+  kittySchema.methods.speak = function () {
+    var greeting = this.name
+      ? "Meow name is " + this.name
+      : "I don't have a name";
+    console.log(greeting);
+  };
 
-    var Kitten = mongoose.model('Kitten', kittySchema);
-    var silence = new Kitten({name: 'Silence'});
-    console.log(silence.name); // 'Silence'
+  const Kitten = mongoose.model('Kitten', kittySchema);
+  const silence = new Kitten({ name: 'Silence' });
+  console.log(silence.name); // 'Silence'
 
-    var fluffy = new Kitten({name: 'fluffy'});
-    fluffy.speak(); // "Meow name is fluffy"
+  const fluffy = new Kitten({ name: 'fluffy' });
+  fluffy.speak(); // "Meow name is fluffy"
 
+  const f = await  fluffy.save();
+  f.speak();
 
-    const f = await  fluffy.save();
-    f.speak();
-
-
-
-    const kitterns = await Kitten.find({ name: /^aws/ });
-    console.log(kitterns.length);
+  const kitterns = await Kitten.find({ name: /^aws/ });
+  console.log(kitterns.length);
 
 });
 
