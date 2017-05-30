@@ -12,7 +12,7 @@ router.use((req, res, next)=> {
         next();
     } else {
         const authHeader = req.header('Authorization');
-        if (authHeader.indexOf('basic ') == 0
+        if (authHeader.indexOf('Basic ') == 0
             && Buffer.from(authHeader.substr(6), 'base64').toString('ascii') === 'admin:admin') {
             console.log('auth ok, welcome home admin');
             next();
