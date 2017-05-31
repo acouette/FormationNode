@@ -36,9 +36,9 @@ NodeJs : Partie 2
     b. Les Middlewares
     c. Sécurité avec JWT
 3. Mise en production
-a. Monitoring
-    b. Process manager
-    c. Cluster
+    a. Monitoring
+        b. Process manager
+        c. Cluster
 4. Packager pour le web
     a. Gulp
     b. webpack

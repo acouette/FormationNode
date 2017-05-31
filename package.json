@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/acouette/FormationNode#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1"
   },
   "devDependencies": {
     "jsonwebtoken": "^7.4.1",

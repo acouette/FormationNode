@@ -19,12 +19,15 @@ const secret = 'amazing node course';
 
 app.get('/login', (req, res) => {
     const authHeader = req.header('Authorization');
-    if (authHeader.indexOf('Basic ') == 0) {
-        const [user, password] = Buffer.from(authHeader.substr(6), 'base64').toString('ascii').split(':');
-        if (users[user] && users[user].password === password) {
-            const token = jwt.sign({username: user, roles: users[user].roles}, secret);
-            res.json(token);
-            return;
+    if (authHeader) {
+        const [authType, value] =  authHeader.split(' ');
+        if (authType === 'Basic') {
+            const [user, password] = Buffer.from(value, 'base64').toString('ascii').split(':');
+            if (users[user] && users[user].password === password) {
+                const token = jwt.sign({username: user, roles: users[user].roles}, secret);
+                res.json(token);
+                return;
+            }
         }
     }
     res.sendStatus(401);
@@ -33,42 +36,37 @@ app.get('/login', (req, res) => {
 
 app.get('/secured', (req, res) => {
     const authHeader = req.header('Authorization');
-    if (authHeader.indexOf('Bearer ') == 0) {
-        jwt.verify(Buffer.from(authHeader.substr(6), 'base64').toString('ascii'), secret, (err, token)=> {
-            if (err) {
-                res.sendStatus(401);
-            } else {
-                console.log('has access to protected route', token);
-                res.sendStatus(200);
-            }
-        });
-    } else {
-        res.sendStatus(401);
+    if (authHeader) {
+        const [authType, value] =  authHeader.split(' ');
+        if (authType === 'Bearer') {
+            const token = jwt.verify(value, secret);
+            console.log('has access to protected route', token);
+            res.sendStatus(200);
+            return;
+        }
     }
+    res.sendStatus(401);
 
 });
 
 app.get('/onlyadmin', (req, res) => {
-    const authHeader = req.header('Authorization');
-    if (authHeader.indexOf('Bearer ') == 0) {
-        jwt.verify(Buffer.from(authHeader.substr(6), 'base64').toString('ascii'), secret, (err, token)=> {
-            if (err) {
-                res.sendStatus(401);
-            } else {
+        const authHeader = req.header('Authorization');
+        if (authHeader) {
+            const [authType, value] =  authHeader.split(' ');
+            if (authType === 'Bearer') {
+                const token = jwt.verify(value, secret);
                 if (token.roles.includes('admin')) {
                     console.log('has access to admin route', token);
                     res.sendStatus(200);
                 } else {
-                    console.log('does not have rights', token);
                     res.sendStatus(403);
                 }
+                return;
             }
-        });
-    } else {
+        }
         res.sendStatus(401);
     }
-
-});
+);
 
 app.listen(3000, (err) => {
     if (err) {
