@@ -1,11 +1,11 @@
 const initialStock = require('./stock');
-const expect = require('chai').expect;
+const assert = require('assert');
 
 let currentStock = initialStock;
 
 module.exports = {
   getCoke: () => {
-    expect(currentStock.cokes).to.be.above(0);
+    assert(currentStock.cokes > 0, 'no coke left');
     currentStock.cokes--;
     return 'here';
   }
