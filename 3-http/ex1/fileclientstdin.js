@@ -1,14 +1,19 @@
-const fetch = require('node-fetch');
+const http = require('http');
+const readline = require('readline');
+const StringDecoder = require('string_decoder').StringDecoder;
+const decoder = new StringDecoder('ascii');
 
 
-process.stdin.setEncoding('utf-8');
-
-process.stdin.on('readable', ()=> {
-    var filename = process.stdin.read();
-    if (filename && filename.length > 0) {
-        fetch(`http://localhost:3000?filename=${filename}`)
-            .then(res=> res.json())
-            .then(console.log)
-            .catch(console.error);
-    }
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
+
+rl.on('line', (filename) => {
+    http.get(`http://localhost:3000?filename=${filename}`, (res)=> {
+        res.on('data', function (chunk) {
+            console.log(decoder.write(chunk));
+        })
+    });
+});
+

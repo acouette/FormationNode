@@ -22,5 +22,3 @@ const myTransform = new Transform({
 });
 
 process.stdin.pipe(myTransform).pipe(process.stdout);
-
-//data.toString().split('').reverse().join('')
