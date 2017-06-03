@@ -1,25 +1,21 @@
 NodeJs : Partie 1
 
 1. Introduction à NodeJs
-    a. Histoire
-    b. Architecture
-    c. Event loop
-3. Npm & Modules
-    a. exports
-    b. require
-    c. Resolution, cache
-4. La programmation asynchrone
+2. Npm
+    a. Les modules (export/require)
+    b. Les types d'imports
+    c. package.json et versionning
+    c. Cache et cycles
+3. La programmation asynchrone
     a. Callback
     b. Promises
     c. async/await
-5. Les modules de base
-    b. process
-    c. fs
-    d. http
-    e. streams
-    f. event
-6. Les tests
-        i. Jasmine
+4. Les modules de base
+    a. fs
+    b. http
+    c. stream
+    d. event
+5. Les tests avec jasmine
 
 
 
@@ -33,16 +29,11 @@ NodeJs : Partie 2
     b. Mongoose
 2. Http avec Express
     a. Les routes
-    b. Les Middlewares
-    c. Sécurité avec JWT
-3. Mise en production
-    a. Monitoring
-        b. Process manager
-        c. Cluster
-4. Packager pour le web
-    a. Gulp
-    b. webpack
-
+    b. Les middlewares
+3. Sécurité avec JWT
+4. Mise en production
+    a. logging
+    b. PM2
 
 
 

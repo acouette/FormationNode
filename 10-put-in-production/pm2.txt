@@ -1,0 +1,8 @@
+démarrer l'application avec pm2
+
+pm2 start index.js -i 0
+
+//supprimmer le logger file winston
+pm2 logs
+
+pm2 delete all

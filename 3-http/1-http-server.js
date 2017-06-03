@@ -1,15 +1,15 @@
 const http = require('http');
-const port = 3000;
 
 
 const requestHandler = (request, response)=> {
     console.log(request.url);
-    response.end('Hello nodejs server');
+    response.writeHeader(201, {'Content-Type': 'application/json'});
+    response.end(JSON.stringify({'somekey': 'someValue'}));
 };
 
 const server = http.createServer(requestHandler);
 
-server.listen(port, err => {
+server.listen(3000, err => {
     if (err) {
         console.error('something bad happened');
     }
