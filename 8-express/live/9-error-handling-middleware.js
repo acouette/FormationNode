@@ -3,9 +3,12 @@ const express = require('express');
 const app = express();
 
 
-app.get('/', (req, res)=> {
+app.get('/sync', (req, res)=> {
     throw new Error('something went terribly wrong');
+});
 
+app.get('/async', (req, res, next)=> {
+    setTimeout(()=> next(new Error('something went terribly wrong in async')))
 });
 
 app.use((error, req, res, next)=> {
