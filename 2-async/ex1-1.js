@@ -1,19 +1,23 @@
+const assert = require('assert');
+
 const askJacquesThePassword = (callback) => {
-  setTimeout(() => callback('the-secret'), 1000);
+  setTimeout(() => callback(null, 'the-secret'), 1000);
 };
 
 const askPierreACandy = (password, callback) => {
   setTimeout(() => {
     if (password === 'the-secret') {
-      callback('the candy');
+      callback(null, 'the candy');
     } else {
-      callback('nothing');
+      callback(new Error('invalid password'));
     }
   }, 1000);
 };
 
-askJacquesThePassword((password) => {
-  askPierreACandy(password, (response => {
+askJacquesThePassword((err, password) => {
+  assert.equal(err, null);
+  askPierreACandy(password, (err, response) => {
+    assert.equal(err, null);
     console.log(response);
-  }))
+  })
 });

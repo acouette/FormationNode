@@ -8,10 +8,6 @@ app.use(bodyParser.json());
 app.use('/todos', todosRouter);
 
 
-app.listen(3000, (err)=> {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('todo list up and running');
-    }
+app.listen(3000, ()=> {
+    console.log('todo list up and running');
 })

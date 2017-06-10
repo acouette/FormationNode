@@ -11,7 +11,7 @@ const askPierreACandy = (password) => {
       if (password === 'the-secret') {
         resolve('the candy');
       } else {
-        resolve('nothing');
+        reject('nothing');
       }
     }, 1000);
   });

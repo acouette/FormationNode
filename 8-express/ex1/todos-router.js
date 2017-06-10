@@ -42,7 +42,7 @@ router.put('/:id', (req, res)=> {
     if (!todo) {
         res.sendStatus(404);
     } else {
-        const updatedTodo = Object.assign(todo, req.body);
+        const updatedTodo = Object.assign({}, todo, req.body);
         todos[req.params.id] = updatedTodo;
         res.status(204).json(updatedTodo);
     }

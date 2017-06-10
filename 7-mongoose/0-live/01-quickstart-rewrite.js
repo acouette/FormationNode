@@ -27,8 +27,8 @@ db.once('open', async function () {
   const f = await  fluffy.save();
   f.speak();
 
-  const kitterns = await Kitten.find({ name: /^aws/ });
-  console.log(kitterns.length);
+  const kittens = await Kitten.find({ name: /^aws/ });
+  console.log(kittens.length);
 
 });
 

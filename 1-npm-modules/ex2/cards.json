@@ -1,14 +1,17 @@
-{
-  "1234": {
+[
+  {
+    "number": "1234",
     "code": "0987",
     "locked": false
   },
-  "5678": {
+  {
+    "number": "5678",
     "code": "6543",
     "locked": false
   },
-  "9012": {
+  {
+    "number": "9012",
     "code": "2109",
     "locked": false
   }
-}
+]

@@ -9,10 +9,7 @@ app.get('/', (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(3000, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
+
+app.listen(3000, () => {
     console.log('express is up');
-  }
 });

@@ -9,4 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.4"
+  }
 }

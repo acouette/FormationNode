@@ -1,7 +1,8 @@
 const calculator = require('../index');
 
 
-describe("Calculator test suite", function () {
+describe("Calculator module", function () {
+
     it("should know how to add", function () {
         expect(calculator.add(4, 3)).toBe(7);
         expect(calculator.add(3, 2)).toBe(5);
@@ -17,7 +18,7 @@ describe("Calculator test suite", function () {
 
     it("should know how to add async", function (next) {
         calculator.addAsync(4, 3).then(res=> {
-            expect(res).toBe(7);
+            expect(res).toBe(2);
             next();
         });
     });

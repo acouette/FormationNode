@@ -3,6 +3,17 @@ mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost:27017/test2');
 const db = mongoose.connection;
 
+const waitForIndex = (model)=> {
+    return new Promise((resolve, reject)=> {
+        model.on('index', function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        })
+    })
+};
 
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -20,11 +31,12 @@ db.once('open', async function () {
         await aCountry.save();
     }
     const cursor = Country.find({}).cursor();
+
     cursor.on('close', function() {
         console.log('done');
     });
     cursor.on('data', (data)=>{
-        console.log('newdata'+data);
+        console.log('newdata '+data);
     })
 });
 

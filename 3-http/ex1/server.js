@@ -5,7 +5,7 @@ const fs = require('fs');
 const port = 3000;
 
 
-const requestHandler = (request, response)=>{
+const requestHandler = (request, response)=> {
     const urlStr = request.url;
     console.log('url', urlStr);
     const parsedUrl = url.parse(urlStr);
@@ -13,28 +13,28 @@ const requestHandler = (request, response)=>{
     const parsedQueryString = queryString.parse(parsedUrl.query);
 
     const fileName = parsedQueryString['filename'];
-    if(!fileName){
+    if (!fileName) {
         response.statusCode = 500;
-        response.end('filename is required')
-    }else{
-
-        fs.readFile(fileName, 'utf-8', (err, content)=>{
-            if(err){
-                response.statusCode = 500;
-                response.end('error while fetching file : '+err.message);
-            }
-            response.writeHeader(200, {'Content-Type': 'text-plain'});
-            response.end(content);
-        });
+        response.end('filename is required');
     }
+
+    fs.readFile(fileName, 'utf-8', (err, content)=> {
+        if (err) {
+            response.statusCode = 500;
+            response.end('error while fetching file : ' + err.message);
+        }
+        response.writeHeader(200, {'Content-Type': 'text-plain'});
+        response.end(content);
+    });
 };
 
 const server = http.createServer(requestHandler);
 
-server.listen(port, err =>{
-    if(err){
+server.listen(port, err => {
+    if (err) {
         console.error('something bad happened');
+    } else {
+        console.log('server is up and listening');
     }
-    console.log('server is up and listening');
 });
 

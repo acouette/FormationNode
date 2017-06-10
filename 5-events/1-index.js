@@ -37,7 +37,8 @@ class MyClassThatEmitEvents extends EventEmitter {
 }
 
 const myInstance = new MyClassThatEmitEvents();
+
+
+myInstance.on('error', (error)=> console.error('the instance sent an error', error.message));
 //if no error handler is attached, stacktrace is printed and exit 1
 myInstance.throwAnError();
-
-//myInstance.on('error', (error)=> console.error('the instance sent an error', error.message));

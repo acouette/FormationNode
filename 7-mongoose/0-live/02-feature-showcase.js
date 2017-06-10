@@ -84,11 +84,11 @@ db.once('open', async function () {
     const kidsWithANameWithA = await Kid.find({name: /.*a.*/});
     console.log('kidsWithANameWithA', kidsWithANameWithA);
 
-    const oneKidsWithANameWithA = await Kid.find({name: /.*a.*/}).limit(1);
-    console.log('oneKidsWithANameWithA', oneKidsWithANameWithA);
+    const oneKidWithANameWithA = await Kid.find({name: /.*a.*/}).limit(1);
+    console.log('oneKidWithANameWithA', oneKidWithANameWithA);
 
-    const findOneKidsWithANameWithA = await Kid.findOne({name: /.*a.*/});
-    console.log('findOneKidsWithANameWithA', findOneKidsWithANameWithA);
+    const findOneKidWithANameWithA = await Kid.findOne({name: /.*a.*/});
+    console.log('findOneKidWithANameWithA', findOneKidWithANameWithA);
 
     const sortedKidsWithANameWithA = await Kid.find({name: /.*a.*/}).sort({name: -1});
     console.log('sortedKidsWithANameWithA', sortedKidsWithANameWithA);

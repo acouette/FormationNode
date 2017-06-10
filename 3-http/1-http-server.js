@@ -12,7 +12,8 @@ const server = http.createServer(requestHandler);
 server.listen(3000, err => {
     if (err) {
         console.error('something bad happened');
+    } else {
+        console.log('server is up and listening');
     }
-    console.log('server is up and listening');
 });
 

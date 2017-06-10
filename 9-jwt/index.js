@@ -31,7 +31,6 @@ app.get('/login', (req, res) => {
         }
     }
     res.sendStatus(401);
-
 });
 
 app.get('/secured', (req, res) => {
@@ -68,10 +67,7 @@ app.get('/onlyadmin', (req, res) => {
     }
 );
 
-app.listen(3000, (err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('express is up');
-    }
+app.listen(3000, () => {
+    console.log('express is up');
+
 });

@@ -90,36 +90,36 @@ db.once('open', async function () {
 
 
         const projectSchema = mongoose.Schema({
-            name: {type: String, required: true},
+            name: {type: String, required: true, unique: true},
             language: {type: String, required: true, enum: ['Java', 'Javascript']},
             budget: {type: Number, min: 0},
         });
 
         const Project = mongoose.model('Project', projectSchema);
-        waitForIndex(Project);
+        await waitForIndex(Project);
         await Project.remove({});
         await Project.create(projects);
         const projectsSortedByName = await Project.find().sort({name: 1});
 
         //ex 2 part1
-        // const javascriptAcs = await Project.find({language: 'Javascript'}).sort({'name': 1});
-        // console.log('javascriptAcs', javascriptAcs);
-        //
-        // const budgetBetween = await Project.find({budget: {$gt: 200000, $lt: 800000}});
-        // console.log('budgetBetween', budgetBetween);
-        // const budgetCountOver400000 = await Project.find({budget: {$gt: 400000}}).count();
-        // console.log('budgetCountOver400000', budgetCountOver400000);
-        //
-        // const max3orderBudget = await Project.find({}).limit(3).sort({budget: 1});
-        // console.log('max3orderBudget', max3orderBudget);
-        //
-        // const mag = await Project.findOneAndUpdate({name: 'Great aventure'}, {name: 'Magnificent aventure'}, {new: true});
-        // console.log(mag);
-        //
-        //
-        // await Project.updateMany({language: 'Java'}, {$inc: {budget: 100000}});
-        // const javas = await Project.find({language: 'Java'});
-        // console.log(javas);
+        const javascriptAcs = await Project.find({language: 'Javascript'}).sort({'name': 1});
+        console.log('javascriptAcs', javascriptAcs);
+
+        const budgetBetween = await Project.find({budget: {$gt: 200000, $lt: 800000}});
+        console.log('budgetBetween', budgetBetween);
+        const budgetCountOver400000 = await Project.count({budget: {$gt: 400000}});
+        console.log('budgetCountOver400000', budgetCountOver400000);
+
+        const max3orderBudget = await Project.find({}).sort({budget: 1}).limit(3);
+        console.log('max3orderBudget', max3orderBudget);
+
+        const mag = await Project.findOneAndUpdate({name: 'Great aventure'}, {name: 'Magnificent aventure'}, {new: true});
+        console.log(mag);
+
+
+        await Project.updateMany({language: 'Java'}, {$inc: {budget: 100000}});
+        const javas = await Project.find({language: 'Java'});
+        console.log(javas);
 
 
         //part 2

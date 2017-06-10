@@ -15,7 +15,7 @@ app.use('/users', (req, res, next)=> {
 
 app.get('/users', function (req, res, next) {
     console.log('route application level middleware only targeting users');
-    next('route');
+    next();
 }, function (req, res, next) {
     console.log('route application level middleware 2 only targeting users');
     next();

@@ -24,7 +24,7 @@ class Timer extends EventEmitter {
 
 }
 
-const timer = new Timer(5);
+const timer = new Timer(7);
 timer.on('start', time=>console.log(`timer started at ${time}`));
 timer.on('tick', time=>console.log(`current progress ${time} %`));
 timer.on('end', time=>console.log(`timer ended at ${time}`));
