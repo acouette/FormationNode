@@ -15,7 +15,6 @@ describe('client web services', () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 clientId = res._id;
                 next();
             });
@@ -43,7 +42,6 @@ describe('client web services', () => {
         })
             .then(res => res.json())
             .then(client => {
-                console.log(client)
                 expect(client._id).toBe(clientId);
                 expect(client.username).toBe('superman');
                 expect(client.password).toBe('clark');
@@ -75,10 +73,26 @@ describe('client web services', () => {
             .then(client => {
                 expect(client.pets[1].administratedVaccines[0].vaccine.name).toBe('rage');
 
-            }).then(()=> fetch(`http://localhost:3000/vaccines/${vaccineId}`, {
+            })
+            .then(() => fetch(`http://localhost:3000/clients/${clientId}/petsToVaccinate?atDate=2017-06-06T20:40:42.255Z`, {
+                method: 'GET',
+            }))
+            .then(res => res.json())
+            .then(pets => {
+                expect(pets.length).toBe(0);
+            })
+            .then(() => fetch(`http://localhost:3000/clients/${clientId}/petsToVaccinate?atDate=2023-06-06T20:40:42.255Z`, {
+                method: 'GET',
+            }))
+            .then(res => res.json())
+            .then(pets => {
+                expect(pets.length).toBe(1);
+                expect(pets[0].name).toBe('Guimauve');
+            })
+            .then(()=> fetch(`http://localhost:3000/vaccines/${vaccineId}`, {
             method: 'DELETE',
         })).then(() => next());
-
+        //
     });
 
 

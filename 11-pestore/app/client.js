@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Client = require('./model').Client;
+const moment = require('moment');
 
 router.get('/:id', (req, res, next) =>
     Client.findById(req.params.id)
@@ -43,13 +44,22 @@ router.get('/:id/pets/:petId/vaccinate/:vaccineId', (req, res, next) => {
         .catch(next);
 });
 
+function isToVaccinate(pet, atDate) {
+    return !!pet.administratedVaccines.find(a => {
+        console.log(moment(a.administrationDate.getTime()).add(a.vaccine.effectivePeriodInYears, 'years'));
+        return moment(a.administrationDate.getTime()).add(a.vaccine.effectivePeriodInYears, 'years') < atDate
+    });
+}
+
 router.get('/:id/petsToVaccinate', (req, res, next) => {
 
     const clientId = req.params.id;
+    const atDate = req.query.atDate ? new Date(req.query.atDate) : new Date();
 
-    Client.find({_id: clientId, 'pets.administratedVaccines.administrationDate': {$gt: '2017-06-06T20:40:42.255Z'}})
+    Client.findById(clientId)
         .populate('pets.administratedVaccines.vaccine')
-        .then(client => res.status(202).json(client))
+        .then(client => client.pets.filter(p => isToVaccinate(p, atDate)))
+        .then(pets => res.status(202).json(pets))
         .catch(next);
 });
 

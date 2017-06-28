@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": { "test": "jasmine" },
+  "scripts": {
+    "test": "jasmine"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.17.1",
     "express": "4.15.2",
+    "moment": "^2.18.1",
     "mongoose": "4.9.2",
     "winston": "2.3.1"
   },
