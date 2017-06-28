@@ -46,7 +46,6 @@ router.get('/:id/pets/:petId/vaccinate/:vaccineId', (req, res, next) => {
 
 function isToVaccinate(pet, atDate) {
     return !!pet.administratedVaccines.find(a => {
-        console.log(moment(a.administrationDate.getTime()).add(a.vaccine.effectivePeriodInYears, 'years'));
         return moment(a.administrationDate.getTime()).add(a.vaccine.effectivePeriodInYears, 'years') < atDate
     });
 }

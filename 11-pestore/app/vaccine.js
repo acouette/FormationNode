@@ -8,8 +8,7 @@ router.get('/', (req, res, next) =>
 
 
 router.post('/', (req, res, next) => {
-    const vaccine = new Vaccine();
-    Object.assign(vaccine, req.body);
+    const vaccine = new Vaccine(req.body);
     vaccine.save()
         .then(savedVaccine => res.status(201).json(savedVaccine))
         .catch(next);

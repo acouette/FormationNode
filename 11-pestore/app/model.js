@@ -31,9 +31,6 @@ const petSchema = new Schema({
     }]
 });
 
-const Pet = mongoose.model('Pet', petSchema);
-
-
 const clientSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
